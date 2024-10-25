@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 //ルートに/のgetリクエストが来たらメッセージを返す
 app.get('/', (req, res) => {
-  res.semd("Server is running!");
+  res.send("Server is running!");
 });
 //サーバーを指定されたポートで起動しメッセージを返す
 app.listen(PORT, () => {
