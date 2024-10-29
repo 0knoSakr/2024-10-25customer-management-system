@@ -1,0 +1,26 @@
+# Node.jsの依存関係
+/node_modules/
+
+/backend/.env
+
+# ログファイル
+/backend/logs/
+/frontend/logs/
+
+# ビルド成果物
+/frontend/build/
+/frontend/dist/
+
+# OSやエディタの自動生成ファイル
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+
+# IDEやエディタの設定ファイル
+.idea/
+.vscode/
+
+# 依存関係のロックファイル（バージョン管理の方針による）
+#/package-lock.json
+#/yarn.lock
