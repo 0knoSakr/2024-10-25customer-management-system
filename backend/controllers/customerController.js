@@ -1,7 +1,5 @@
-// 顧客情報のCRUDロジック
 const customerController = require("../models/customerModel");
 
-// 全ての顧客情報を取得
 exports.allCustomer = (req, res) => {
   customerController.findAll((err, customers) => {
     if (err) return res.status(500).json({ error: err });
@@ -10,7 +8,6 @@ exports.allCustomer = (req, res) => {
   console.lof()
 };
 
-//顧客詳細取得
 exports.getCustomer = async (req, res) => {
   try {
     const customerId = req.params.id;
@@ -25,7 +22,6 @@ exports.getCustomer = async (req, res) => {
   }
 };
 
-// 顧客情報を更新
 exports.updateCustomer = (req, res) => {
   const { id } = req.params;
   const { name, email, phone, address } = req.body;
@@ -40,7 +36,6 @@ exports.updateCustomer = (req, res) => {
   );
 };
 
-// 顧客情報を削除
 exports.deleteCustomer = (req, res) => {
   const { id } = req.params;
 
@@ -50,7 +45,6 @@ exports.deleteCustomer = (req, res) => {
   });
 };
 
-//顧客追加
 exports.postCustomer = async (req, res) => {
   const { name, email, phone, address } = req.body;
 
