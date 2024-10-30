@@ -1,25 +1,36 @@
 //ルーティングと全体構造
 import React from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import CustomerListPage from "./pages/CustomerListPage";
+import CustomerDetailPage from "./pages/CustomerDetailPage";
 
 const App = () => {
   return (
-    <div>
-      <header>
-        <nav>
-          <ul>
-            <li>
-              <Link>顧客一覧</Link>
-            </li>
-            <li>
-              <Link>顧客詳細</Link>
-            </li>
-            <li>
-              <Link>顧客追加/編集</Link>
-            </li>
-          </ul>
-        </nav>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <header>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">顧客一覧</Link>
+              </li>
+              <li>
+                <Link to="customer/:id">顧客詳細</Link>
+              </li>
+              <li>
+                <Link to="form">顧客追加/編集</Link>
+              </li>
+            </ul>
+          </nav>
+        </header>
+        <div>
+          <Routes>
+            <Route path="/" element={CustomerListPage}></Route>
+            <Route path="/customer/:id" element={CustomerDetailPage}></Route>
+            <Route path="/form" element={ CustomerListPage }></Route>
+          </Routes>
+        </div>
+      </div>
+    </Router>
   );
 };

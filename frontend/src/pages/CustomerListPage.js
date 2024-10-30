@@ -1,5 +1,8 @@
-const CustomerList = () => {
+//顧客一覧ページ
+const CustomerListPage = () => {
   return (
     
-  )
-}
+  );
+};
+
+export default CustomerListPage;
