@@ -1,5 +1,6 @@
 //検索バーコンポーネント
 const SerchBar = () => {
+  
   return (
     
   );

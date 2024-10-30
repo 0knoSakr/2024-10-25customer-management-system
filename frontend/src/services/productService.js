@@ -1,6 +1,6 @@
 //API呼び出し
 
-import api from './productService';
+import api from './api.js';
 
 //顧客一覧取得
 export const allCustomer = (id) => {
