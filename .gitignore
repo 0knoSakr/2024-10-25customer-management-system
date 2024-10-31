@@ -24,3 +24,9 @@ Thumbs.db
 # 依存関係のロックファイル（バージョン管理の方針による）
 #/package-lock.json
 #/yarn.lock
+
+# Ignore source maps
+*.map
+
+# Ignore PAC files
+*.pack

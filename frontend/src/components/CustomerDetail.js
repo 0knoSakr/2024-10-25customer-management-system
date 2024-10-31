@@ -13,11 +13,13 @@ const CustomerDetail = () => {
         const response = await api.get("/customers");
         setCustomers(response.data);
         setAllCustomer(response.data);
+        console.log("test");
       } catch (error) {
         console.error("顧客情報の取得に失敗しました:", error);
       }
     };
     fetchCustomers();
+    console.log("test");
   }, []);
 
   return (
