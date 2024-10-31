@@ -1,32 +1,26 @@
-# Node.jsの依存関係
-/*/node_modules/
-
-/backend/.env
-
-# ログファイル
-/backend/logs/
-/frontend/logs/
-
-# ビルド成果物
-/frontend/build/
-/frontend/dist/
-
-# OSやエディタの自動生成ファイル
+# Node.js と一般的な無視ファイル
+node_modules/
+dist/
+.env
+*.log
 .DS_Store
 Thumbs.db
-*.log
-*.tmp
 
-# IDEやエディタの設定ファイル
-.idea/
+# 特定のバックエンド用無視ファイル
+backend/node_modules/
+backend/.env
+backend/*.log
+backend/config/local.js    # 環境によっては、追加の設定ファイル
+
+# 特定のフロントエンド用無視ファイル
+frontend/node_modules/
+frontend/build/
+frontend/.env.local
+frontend/coverage/
+
+# バージョン管理不要なエディタ・OSの設定ファイル
 .vscode/
-
-# 依存関係のロックファイル（バージョン管理の方針による）
-#/package-lock.json
-#/yarn.lock
-
-# Ignore source maps
-*.map
-
-# Ignore PAC files
-*.pack
+.idea/
+*.swp
+*.swo
+*.swn
