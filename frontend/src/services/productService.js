@@ -11,12 +11,12 @@ export const getCustomer = (id) => {
   return api.get(`/customers/${id}`);
 };
 //顧客追加
-export const postCustomer = (id) => {
-  return api.post(`/customers`);
+export const postCustomer = (data) => {
+  return api.post(`/customers`, data);
 };
 //顧客更新
-export const updateCustomer = (id) => {
-  return api.put(`/customers/${id}`);
+export const updateCustomer = (id, data) => {
+  return api.put(`/customers/${id}`, data);
 };
 //顧客削除
 export const deleteCustomer = (id) => {

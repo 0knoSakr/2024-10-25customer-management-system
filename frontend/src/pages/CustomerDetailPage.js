@@ -4,7 +4,7 @@ import React from 'react';
 const CustomerDetailPage = () => {
   return (
     <div>
-      <h1>CustomerDetailPage</h1>
+      <h1>顧客詳細</h1>
     </div>
   );
 };
