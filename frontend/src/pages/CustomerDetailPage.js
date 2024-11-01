@@ -1,4 +1,6 @@
 //顧客詳細画面
+import React from 'react';
+
 const CustomerDetailPage = () => {
   return (
     <div>
