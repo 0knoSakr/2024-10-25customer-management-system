@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 const CustomerList = ({ customers }) => {
   return (
     <div>
-      <h2>顧客一覧</h2>
       <div>
         <Link to={`/customers`}>
           <button>顧客情報追加</button>
