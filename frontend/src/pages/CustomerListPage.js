@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import api from '../services/api'; // APIサービスをインポート
 import CustomerList from '../components/CustomerList'; // 顧客一覧コンポーネントをインポート
+import axios from "axios";
 
 const CustomerListPage = () => {
   const [customers, setCustomers] = useState([]); // 顧客データを保存するステート
@@ -10,7 +11,7 @@ const CustomerListPage = () => {
   useEffect(() => {
     const fetchCustomers = async () => {
       try {
-        const response = await api.get('/customers'); // 顧客データを取得
+        const response = await axios.get('http://localhost:3000/api/customers'); // 顧客データを取得
         setCustomers(response.data); // 顧客データをステートにセット
       } catch (err) {
         setError(err); // エラーをステートにセット
