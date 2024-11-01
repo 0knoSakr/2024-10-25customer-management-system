@@ -5,7 +5,6 @@ exports.allCustomer = (req, res) => {
     if (err) return res.status(500).json({ error: err });
     res.status(200).json(customers);
   });
-  console.lof()
 };
 
 exports.getCustomer = async (req, res) => {
