@@ -18,7 +18,7 @@ const App = () => {
                 <Link to="customer/:id">顧客詳細</Link>
               </li>
               <li>
-                <Link to="form">顧客追加/編集</Link>
+                <Link to="customer/form">顧客追加/編集</Link>
               </li>
             </ul>
           </nav>
@@ -27,7 +27,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={CustomerListPage}></Route>
             <Route path="/customer/:id" element={CustomerDetailPage}></Route>
-            <Route path="/form" element={ CustomerListPage }></Route>
+            <Route path="/customer/form" element={ CustomerListPage }></Route>
           </Routes>
         </div>
       </div>
