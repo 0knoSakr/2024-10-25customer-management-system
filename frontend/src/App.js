@@ -16,10 +16,7 @@ const App = () => {
                 <Link to="/">顧客一覧</Link>
               </li>
               <li>
-                <Link to="customer/:id">顧客詳細</Link>
-              </li>
-              <li>
-                <Link to="customer/form">顧客追加/編集</Link>
+                <Link to="/customer/form">顧客追加/編集</Link>
               </li>
             </ul>
           </nav>

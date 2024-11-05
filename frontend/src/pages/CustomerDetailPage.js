@@ -2,10 +2,11 @@
 import React, { useState, useEffect } from 'react';
 import api from '../services/api';//データを取得するためのapi
 import { useParams } from 'react-router-dom';//idから情報をとれるようになる
+import CustomerDetail from '../components/CustomerDetail';
 
 const CustomerDetailPage = () => {
   const [customer, setCustomer] = useState(null);
-  const { id } = useState();
+  const { id } = useParams();
 
   useEffect(() => {
     const fetchCustomer = async () => {
@@ -26,7 +27,7 @@ const CustomerDetailPage = () => {
   return (
     <div>
       <h1>顧客詳細</h1>
-      <CustomerDetail customer={ customers }/>
+      <CustomerDetail customer={ customer }/>
     </div>
   );
 };

@@ -1,6 +1,5 @@
 //顧客詳細画面
 import React from "react";
-import { Link } from "react-router-dom";
 
 const CustomerDetail = ({ customer }) => {
   return (

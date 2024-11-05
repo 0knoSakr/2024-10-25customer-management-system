@@ -29,7 +29,7 @@ const CustomerList = ({ customers }) => {
                   <td>{customer.address}</td>
                   <td>{customer.company_name}</td>
                   <td>
-                    <Link to={`/customers/${customer.id}`}>
+                    <Link to={`/customer/${customer.id}`}>
                       <button>詳細</button>
                     </Link>
                   </td>
