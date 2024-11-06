@@ -7,13 +7,13 @@ const Customers = {
       query,
       [data.name, data.email, data.phone, data.address],
       callback
-    );
+    );//データベースに新規情報の追加
   },
 
   findAll: (callback) => {
     const query = `SELECT * FROM customers`;
     db.query(query, callback);
-  },
+  },//全情報をデータベースから取得
 
   updateById: (id, data, callback) => {
     const query = `UPDATE customers SET name = ?, email = ?, phone = ?, address = ? WHERE id = ?`;
@@ -22,7 +22,7 @@ const Customers = {
       [data.name, data.email, data.phone, data.address, id],
       callback
     );
-  },
+  },//idからデータベースの情報を編集
 
   findById: (id) => {
     const query = `SELECT * FROM customers WHERE id = ?`;
@@ -34,6 +34,6 @@ const Customers = {
         resolve(results);
       });
     });
-  }
+  }//idからデータベースの情報を取得
   }
 module.exports = Customers;
