@@ -23,6 +23,7 @@ const CustomerFrom = () => {
         <label htmlFor="">会社名:</label>
         <input type="text" placeholder="会社名を入力"/>
       </div>
+      <button type="submit">保存</button>
     </form>
   );
 };
