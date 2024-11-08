@@ -5,7 +5,7 @@ const CustomerList = ({ customers }) => {
   return (
     <div>
       <div>
-        <Link to={`/customers`}>
+        <Link to={`/customer/form`}>
           <button>顧客情報追加</button>
         </Link>
       </div>
