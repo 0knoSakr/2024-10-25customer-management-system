@@ -50,20 +50,25 @@ exports.deleteCustomer = (req, res) => {
 
 //顧客情報を追加
 exports.postCustomer = async (req, res) => {
-  const { name, email, phone, address } = req.body;
+  const { name, email, phone, address, company_name } = req.body;
 
+  // 必須項目のチェック
   if (!name || !email || !phone || !address) {
     return res.status(400).json({ message: "必要な情報が不足しています。" });
   }
+
   try {
-    const newCustomer = new Customer({
+    // company_nameが存在する場合のみ追加
+    const data = new Customer({
       name,
       email,
       phone,
-      address
+      address,
+      company_name: company_name || null, // company_nameがなければnullを設定
     });
-    await newCustomer.save();
-    return res.status(201).json({ message: "ユーザーが追加されました。", customer: newCustomer });
+
+    await data.save();
+    return res.status(201).json({ message: "ユーザーが追加されました。", customer: data });
   } catch (error) {
     return res.status(500).json({ message: "ユーザーの追加に失敗しました。", error: error.message });
   }

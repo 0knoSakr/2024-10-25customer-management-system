@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { postCustomer } from "../services/customerService"
 
 const CustomerForm = () => {
   // 入力状態
@@ -12,6 +13,7 @@ const CustomerForm = () => {
 
   // エラーメッセージ状態
   const [errors, setErrors] = useState({});
+  const [submitStatus, setSubmiteStatus] = useState("");
 
   // バリデーション関数
   const validate = (field, value) => {
@@ -61,7 +63,7 @@ const CustomerForm = () => {
   };
 
   // フォーム送信時の処理
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const newErrors = Object.keys(formData).reduce((acc, field) => {
@@ -73,8 +75,13 @@ const CustomerForm = () => {
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      alert("データが追加されました");
-      // API呼び出し処理など
+      try {
+        await postCustomer(formData);
+        setSubmiteStatus("データが正常に追加されました。")
+      } catch (error) {
+        setSubmiteStatus("データの追加に失敗しました。")
+        console.log(formData);
+      }
     }
   };
 
@@ -121,6 +128,7 @@ const CustomerForm = () => {
         )
       )}
       <button type="submit">保存</button>
+      {submitStatus && <p>{ submitStatus }</p> }
     </form>
   );
 };
