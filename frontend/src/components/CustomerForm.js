@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import { postCustomer } from "../services/customerService"
+import { postCustomer } from "../services/customerService";
 
 const CustomerForm = () => {
   // 入力状態
   const [formData, setFormData] = useState({
-    customerName: "",
+    name: "", // customerName -> name に変更
     email: "",
     phone: "",
     address: "",
-    companyName: "",
+    company_name: "", // companyName -> company_name に変更
   });
 
   // エラーメッセージ状態
@@ -17,27 +17,21 @@ const CustomerForm = () => {
 
   // バリデーション関数
   const validate = (field, value) => {
-     // 会社名を入力していなくてもエラーメッセージを返さない
-    if (field === "companyName" && !value) {
-      return null;
-    }
-    //文字数の下限上限指定
+    if (field === "company_name" && !value) return null; // company_nameは任意項目なのでバリデーションは不要
+
     const minLength = 1;
     const maxLength = 255;
 
-    //文字のバリデーション
-    if (!value) return `この項目は入力必須です`;
+    if (!value) return "この項目は入力必須です";
     if (value.length < minLength || value.length > maxLength)
       return `${minLength}〜${maxLength}文字以内で入力してください`;
 
-    //メールアドレスのバリデーション
     if (field === "email") {
       const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
       if (!emailPattern.test(value))
         return "正しいメールアドレスの形式で入力してください";
     }
 
-    //電話番号のバリデーション
     if (field === "phone") {
       const phonePattern = /^[0-9]+$/;
       if (!phonePattern.test(value))
@@ -55,7 +49,6 @@ const CustomerForm = () => {
       [name]: value,
     }));
 
-    // エラーメッセージの切り替え
     setErrors((prevErrors) => ({
       ...prevErrors,
       [name]: validate(name, value),
@@ -77,58 +70,56 @@ const CustomerForm = () => {
     if (Object.keys(newErrors).length === 0) {
       try {
         await postCustomer(formData);
-        setSubmitStatus("データが正常に追加されました。")
+        setSubmitStatus("データが正常に追加されました。");
       } catch (error) {
-        setSubmitStatus("データの追加に失敗しました。")
-        console.log(formData);
+        setSubmitStatus("データの追加に失敗しました。");
+        console.error("エラー詳細:", error.response ? error.response.data : error.message);
       }
     }
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      {["customerName", "email", "phone", "address", "companyName"].map(
-        (field) => (
-          <div key={field}>
-            <label htmlFor={field}>
-              {field === "customerName"
-                ? "顧客名:"
+      {["name", "email", "phone", "address", "company_name"].map((field) => (
+        <div key={field}>
+          <label htmlFor={field}>
+            {field === "name"
+              ? "顧客名:"
+              : field === "email"
+              ? "メールアドレス:"
+              : field === "phone"
+              ? "電話番号:"
+              : field === "address"
+              ? "住所:"
+              : field === "company_name"
+              ? "会社名:"
+              : field}
+          </label>
+          <input
+            type="text"
+            name={field}
+            id={field}
+            value={formData[field]}
+            onChange={handleChange}
+            placeholder={`${
+              field === "name"
+                ? "顧客名"
                 : field === "email"
-                ? "メールアドレス:"
+                ? "メールアドレス"
                 : field === "phone"
-                ? "電話番号:"
+                ? "電話番号"
                 : field === "address"
-                ? "住所:"
-                : field === "companyName"
-                ? "会社名:"
-                : field}
-            </label>
-            <input
-              type="text"
-              name={field}
-              id={field}
-              value={formData[field]}
-              onChange={handleChange}
-              placeholder={`${
-                field === "customerName"
-                  ? "顧客名"
-                  : field === "email"
-                  ? "メールアドレス"
-                  : field === "phone"
-                  ? "電話番号"
-                  : field === "address"
-                  ? "住所"
-                  : field === "companyName"
-                  ? "会社名"
-                  : field
-              }を入力`}
-            />
-            {errors[field] && <span>{errors[field]}</span>}
-          </div>
-        )
-      )}
+                ? "住所"
+                : field === "company_name"
+                ? "会社名"
+                : field
+            }を入力`}
+          />
+          {errors[field] && <span style={{ color: "red" }}>{errors[field]}</span>}
+        </div>
+      ))}
       <button type="submit">保存</button>
-      {submitStatus && <p>{ submitStatus }</p> }
+      {submitStatus && <p>{submitStatus}</p>}
     </form>
   );
 };

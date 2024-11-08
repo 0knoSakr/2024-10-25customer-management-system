@@ -1,37 +1,64 @@
 const db = require("../config/db");
 
 const Customers = {
-  create: (data, callback) => {
+  create: async (data) => {
     const query = `INSERT INTO customers (name, email, phone, address, company_name) VALUES (?, ?, ?, ?, ?)`;
-    db.query(
-      query,
-      [
-        data.name,
-        data.email,
-        data.phone,
-        data.address,
-        data.company_name || null,
-      ],
-      callback
-    ); // データベースに新規情報の追加
+    return new Promise((resolve, reject) => {
+      db.query(
+        query,
+        [data.name, data.email, data.phone, data.address, data.company_name || null],
+        (error, results) => {
+          if (error) {
+            return reject(error);
+          }
+          resolve(results);
+        }
+      );
+    });
   },
 
-  findAll: (callback) => {
+  findAll: async () => {
     const query = `SELECT * FROM customers`;
-    db.query(query, callback);
-  }, //全情報をデータベースから取得
+    return new Promise((resolve, reject) => {
+      db.query(query, (error, results) => {
+        if (error) {
+          return reject(error);
+        }
+        resolve(results);
+      });
+    });
+  },
 
-  updateById: (id, data, callback) => {
+  updateById: async (id, data) => {
     const query = `UPDATE customers SET name = ?, email = ?, phone = ?, address = ?, company_name = ? WHERE id = ?`;
-    db.query(
-      query,
-      [data.name, data.email, data.phone, data.address, data.company_name, id],
-      callback
-    );
-  }, //idからデータベースの情報を編集
+    return new Promise((resolve, reject) => {
+      db.query(
+        query,
+        [data.name, data.email, data.phone, data.address, data.company_name, id],
+        (error, results) => {
+          if (error) {
+            return reject(error);
+          }
+          resolve(results);
+        }
+      );
+    });
+  },
 
-  findById: (id) => {
+  findById: async (id) => {
     const query = `SELECT * FROM customers WHERE id = ?`;
+    return new Promise((resolve, reject) => {
+      db.query(query, [id], (error, results) => {
+        if (error) {
+          return reject(error);
+        }
+        resolve(results[0] || null); // 配列の最初の要素を返し、見つからない場合はnull
+      });
+    });
+  },
+
+  deleteById: async (id) => {
+    const query = `DELETE FROM customers WHERE id = ?`;
     return new Promise((resolve, reject) => {
       db.query(query, [id], (error, results) => {
         if (error) {
@@ -40,6 +67,7 @@ const Customers = {
         resolve(results);
       });
     });
-  }, //idからデータベースの情報を取得
+  },
 };
+
 module.exports = Customers;
