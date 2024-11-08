@@ -1,6 +1,6 @@
 const customerController = require("../models/customerModel");
 
-//すべての顧客情報を取得
+// すべての顧客情報を取得
 exports.allCustomer = (req, res) => {
   customerController.findAll((err, customers) => {
     if (err) return res.status(500).json({ error: err });
@@ -8,7 +8,7 @@ exports.allCustomer = (req, res) => {
   });
 };
 
-//idから顧客情報を取得
+// idから顧客情報を取得
 exports.getCustomer = async (req, res) => {
   try {
     const customerId = req.params.id;
@@ -23,7 +23,7 @@ exports.getCustomer = async (req, res) => {
   }
 };
 
-//顧客情報を編集
+// 顧客情報を編集
 exports.updateCustomer = (req, res) => {
   const { id } = req.params;
   const { name, email, phone, address } = req.body;
@@ -38,7 +38,7 @@ exports.updateCustomer = (req, res) => {
   );
 };
 
-//顧客情報を削除
+// 顧客情報を削除
 exports.deleteCustomer = (req, res) => {
   const { id } = req.params;
 
@@ -48,8 +48,8 @@ exports.deleteCustomer = (req, res) => {
   });
 };
 
-//顧客情報を追加
-exports.postCustomer = async (req, res) => {
+// 顧客情報を追加
+exports.postCustomer = (req, res) => {
   const { name, email, phone, address, company_name } = req.body;
 
   // 必須項目のチェック
@@ -57,19 +57,18 @@ exports.postCustomer = async (req, res) => {
     return res.status(400).json({ message: "必要な情報が不足しています。" });
   }
 
-  try {
-    // company_nameが存在する場合のみ追加
-    const data = new Customer({
-      name,
-      email,
-      phone,
-      address,
-      company_name: company_name || null, // company_nameがなければnullを設定
-    });
+  const data = {
+    name,
+    email,
+    phone,
+    address,
+    company_name: company_name || null, // company_nameがなければnullを設定
+  };
 
-    await data.save();
-    return res.status(201).json({ message: "ユーザーが追加されました。", customer: data });
-  } catch (error) {
-    return res.status(500).json({ message: "ユーザーの追加に失敗しました。", error: error.message });
-  }
+  customerController.create(data, (err, result) => {
+    if (err) {
+      return res.status(500).json({ message: "ユーザーの追加に失敗しました。", error: err.message });
+    }
+    return res.status(201).json({ message: "ユーザーが追加されました。", customer: result });
+  });
 };
