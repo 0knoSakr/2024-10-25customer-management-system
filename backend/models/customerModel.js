@@ -5,7 +5,13 @@ const Customers = {
     const query = `INSERT INTO customers (name, email, phone, address, company_name) VALUES (?, ?, ?, ?, ?)`;
     db.query(
       query,
-      [data.name, data.email, data.phone, data.address, data.company_name || null,],
+      [
+        data.name,
+        data.email,
+        data.phone,
+        data.address,
+        data.company_name || null,
+      ],
       callback
     ); // データベースに新規情報の追加
   },

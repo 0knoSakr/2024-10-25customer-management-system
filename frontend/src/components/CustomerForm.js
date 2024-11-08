@@ -13,7 +13,7 @@ const CustomerForm = () => {
 
   // エラーメッセージ状態
   const [errors, setErrors] = useState({});
-  const [submitStatus, setSubmiteStatus] = useState("");
+  const [submitStatus, setSubmitStatus] = useState("");
 
   // バリデーション関数
   const validate = (field, value) => {
@@ -77,9 +77,9 @@ const CustomerForm = () => {
     if (Object.keys(newErrors).length === 0) {
       try {
         await postCustomer(formData);
-        setSubmiteStatus("データが正常に追加されました。")
+        setSubmitStatus("データが正常に追加されました。")
       } catch (error) {
-        setSubmiteStatus("データの追加に失敗しました。")
+        setSubmitStatus("データの追加に失敗しました。")
         console.log(formData);
       }
     }

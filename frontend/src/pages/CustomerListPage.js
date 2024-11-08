@@ -23,7 +23,7 @@ const CustomerListPage = () => {
   }, []);
 
   if (loading) return <div>Loading...</div>; // ローディング中の表示
-  if (error) return <div>Error: {error.message}</div>; // エラー発生時の表示
+  if (error) return <div>Error: {error.message || "An unexpected error occurred"}</div>; // エラー発生時の表示
 
   return (
     <div>

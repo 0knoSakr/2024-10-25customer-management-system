@@ -2,7 +2,7 @@ const express = require('express');
 const customerController = require('../controllers/customerController');
 const router = express.Router();
 
-router.get('/customers', customerController.allCustomer);//全部の情報を取得
+router.get('/customers', customerController.allCustomers);//全部の情報を取得
 router.get('/customers/:id', customerController.getCustomer);//idから情報を取得
 router.post('/customers', customerController.postCustomer);//新規情報を追加
 router.put('/customers/:id', customerController.updateCustomer);//idから情報を編集

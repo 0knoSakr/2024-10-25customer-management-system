@@ -14,14 +14,14 @@ const CustomerDetailPage = () => {
         const response = await api.get(`/customers/${id}`);
         setCustomer(response.data);
       } catch (error) {
-        console.error("商品情報の取得に失敗しました", error);
+        console.error("顧客情報の取得に失敗しました", error);
       }
     };
     fetchCustomer();
   }, [id]);
 
   if (!customer) {
-    return<div>Loading...</div>
+    return <div>Loading...</div>
   }
 
   return (

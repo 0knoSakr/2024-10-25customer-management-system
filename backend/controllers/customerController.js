@@ -1,7 +1,7 @@
 const customerController = require("../models/customerModel");
 
 // すべての顧客情報を取得
-exports.allCustomer = (req, res) => {
+exports.allCustomers = (req, res) => {
   customerController.findAll((err, customers) => {
     if (err) return res.status(500).json({ error: err });
     res.status(200).json(customers);

@@ -11,7 +11,7 @@ const CustomerDetail = ({ customer }) => {
       <p>電話番号:{customer[0].phone}</p>
       <p>住所:{customer[0].address}</p>
       <p>会社名:{customer[0].company_name}</p>
-      <Link to={`/customer/form${customer.id}`}>
+      <Link to={`/customer/form/${customer.id}`}>
         <button>編集</button>
       </Link>
     </div>
