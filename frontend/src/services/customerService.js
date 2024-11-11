@@ -3,7 +3,7 @@
 import api from './api.js';
 
 //顧客一覧取得
-export const allCustomers = (id) => {
+export const allCustomer = (id) => {
   return api.get(`/customers`);
 };
 //顧客詳細取得
